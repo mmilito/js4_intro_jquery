@@ -1,0 +1,176 @@
+*** Block formatting:  BFC ***
+
+OPTIONS:
+	- float
+	- set overflow not visible
+	- display as table-cell, table-caption or inline-block
+	- set position to absolute or fixed (pulls out of normal layout flow)
+
+BFC (block formatted components) will:
+	- contain all margins
+	- contain contents
+	- contain the floats
+	; overflow:hidden will force content to be contained within container so doesn’t spill out
+
+
+
+	- 3 column layout is done by float left, float right and overflow hidden on center column.
+
+***** box model = do this at the top of every page!!!!    (this forces margins, etc. into the box)
+
+* {
+  box-sizing: border-box;
+} 
+
+
+*** Position ***
+	- position: static is default
+
+
+	- relative is like static only allows setting of height, width. Is rendered with regard to document
+	- absolute is positioned with regard to parent element (so can be within element)
+	- fixed is pinned so stays put during scrolling
+
+
+*** SPECIFICITY ***
+
+	- calling more tags make more specific, ex:
+		.classname li  is more specific than .classname
+
+*** YEOMAN ***
+	- scaffolding tool for building the app :)
+	- at home, run:
+	npm install -g yo  (this installs yo globally)
+	npm install -g generator-refactoru-html   (installs the generator from refactorU)
+
+	to run the generator, move to target directory and type: yo refactoru-html (say no or yes to components)
+
+*** RESPONSIVE DESIGN ***
+	- different devices, screen sizes, hardware, oy!
+	- development approach s/b mobile first (design can start at large screen, but dev needs to start at mobile). This is more difficult approach but becoming best practice.
+	- if need to get going FAST, use bootstrap or similar. Then rework for looking better later.
+	- for responsive design, use percentages rather than fixed dimensions, etc.
+	- use max/min height and width. ex: .container { max-width: 500px; } Never allows container to get wider than 500px, but can get smaller as screen sizes down.
+	- use max in conjunction with margin:auto so as screen resizes the box will move accordingly.
+	- em to em font size cascades. For instance, set body to 20px and set everything else to ems and let it cascade. Calculates as percentage. Rem = relative em and goes back to first specified in doc; however.
+	- media query: (design around 5 breakpoints, or sizes, that the design/screen is verified for) coding will change as screen changes beyond break point. 
+	ex:  (this is targeting screen with display width of at least 600 px and then switches to 800px display width)	
+	@media screen and (min-width: 600px)  }
+		.container {max-width: 650px}
+             }	
+	@media screen and (min-width: 800px)  {
+	       .container {max-width:850px	}
+		.box	  { background-color:blue	}
+	    {
+
+specificity counts, so start with smallest screen since last rule will be applied last.  Cannot nest media query inside element in CSS (but can do it with a pre-process lang)	
+	- in example, background changes for certain screen size. Don’t do this … was just for example. ;)
+	- ** add another metatag in header … (this is on student resources) this controls how users can zoom on mobile devices, etc.	
+		<meta name=“viewport” content=“user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width”>
+
+	- feature detection: polyfill adds support to browsers that don;t support modern tools (progressive enhancement) = www.modernizr.com  — it will generate code and you copy and include in project. it will generate jquery to add classes in order to spoof it looking the same on older devices.
+
+	-polyfill vs. shim = js code that injects functionality into older browsers that don’t natively support it. (ex: border-radius for rounded corners is new.)
+	-www.caniuse.com = shows which browsers support which feature. So, for instance, know where transform works or doesn’t.
+
+
+*** JAVASCRIPT ***
+
+	= <- assignment
+	=== <- strict comparison
+
+var varname = “test”;
+
+***
+
+if (condition) {
+	//condition is TRUE
+} else {
+	//condition is FALSE
+}
+
+***
+
+
+if (condition1) {
+	//condition1 is TRUE
+} else if (condition2) {
+	//condition2 is TRUE
+} else {
+	//neither condition is TRUE
+}
+
+***
+
+two ways to access properties:
+1) variable.property ex: input.length  (gives length of input)
+2) use brackets ex: input[0]  (gives position zero (first character) of input
+
+***
+
+if (num>50) && (num<100)  <- will evaluate to see if num is greater than 50 AND less than 100.
+
+***
+
+<script src=“main.js”></script>  (must have end tag. add this before end body tag, NOT in head tag!!)
+
+var name=“Chris”;
+name=“test”;  <- once var is declared, can reuse w/o re-declaring var
+
+arrays:
+ var days = [“Monday”,”Tuesday”,”Wednesday”]
+ 
+loop:
+ for (initializer; condition; iteration) {}  <- condition is checked before each iteration, even before the first. iterator is what happens to iterate.
+ for (var i=0; i<=3; i++)
+
+	i++ = i+=1 = i+1  (this only works for the number one)
+for loops allow controlled number of iterations
+
+objects: a value with custom properties
+ var movieReview = {
+	title (name): “spirited away” (value),
+	director: “john hones”,
+	rating: 4.5
+};
+
+name+value=PROPERTY
+
+naming objects: 
+
+ { title: “movie”  }
+OR
+ { “title-one”: “thing”  } <-needs to have quotes and brackets due to dash
+
+ notating names …
+	myObj.title = myObj[“title-one”]
+
+
+*** FUNCTIONS ***
+
+2 dif ways to declare:
+	var area=function(params) {  };  <- browser reads this as regular variable . USE THIS SYNTAX!!!
+
+	function area(params {  }  <- browser has heavy lifting here (“hoisting,) causes bugs. Avoid at all costs
+
+
+all functions will return “undefined” if a return value is not defined.
+==
+var isValidNumber = function (x) {
+	var max = 100;
+	return max; 
+}
+
+will always return 100 as result
+==
+pass in 10 for X
+
+var isValidNumber = function (x) {
+	var max = 100;
+	return {mymax: max, myX:x}; 
+}
+
+will return mymax=100, myX as 10
+
+
+
