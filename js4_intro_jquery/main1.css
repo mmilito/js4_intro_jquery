@@ -1,0 +1,21 @@
+/* main CSS for jQuery practice
+*/
+h1 {
+	color: purple;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 2em;
+}
+.buttons {
+	padding-left: 2em;
+}
+button {
+	text-align: center;
+	display:inline-block;
+	padding: 1em;
+	margin:1em;
+	background-color: blue;
+	color: white;
+	border: 0.5em solid red;
+
+}
